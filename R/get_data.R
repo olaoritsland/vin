@@ -85,7 +85,12 @@ get_data <- function(
       assortment.assortment,
       assortment.validFrom,
       assortment.listedFrom
-    )
+    ) %>%
+
+    # unnest unnamed nested columns
+    tidyr::unnest_wider(grapeDesc, names_sep = "_") %>%
+    tidyr::unnest_wider(grapePct, names_sep = "_") %>%
+    tidyr::unnest_wider(foodDesc, names_sep = "_")
 
 
   return(data)
